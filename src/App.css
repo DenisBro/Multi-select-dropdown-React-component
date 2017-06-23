@@ -1,24 +1,98 @@
-.App {
+
+.pan {
+  display: inline-block;
+  margin-left: 5px;
+  width: 50px;
+  height: 20px;
+  background-color: #daf2fc;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+input[type="checkbox"] + label:before {
+  border: 1px solid #dbdbdb;
+  border-radius: 2px;
+  content: "\00a0";
+  display: inline-block;
+  font: 13px/1em sans-serif;
+  font-weight: bold;
+  height: 16px;
+  margin: 0 .25em 0 0;
+  padding: 0;
+  vertical-align: top;
+  width: 16px;
+}
+
+input[type="checkbox"]:checked + label:before {
+  background: #00aae1;
+  border: 1px solid #00aae1;
+  border-radius: 2px;
+  color: #fff;
+  content: "\2713";
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+input[type="checkbox"]:checked + label:after {
+  font-weight: bold;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.checkbox {
+  float: left;
+  margin: 0;
 }
 
-.App-intro {
-  font-size: large;
+.list-group-item:first-child{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.list-group-item:last-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+ul {
+  margin-top: -1px;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+button,
+button:active,
+button:focus {
+    outline: none;
+}
+
+
+button.list-group-item:hover,
+button.list-group-item:active{
+ background-color: #f2fafd;
+}
+
+.panel {
+  background-color: #fff;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.column {
+  min-width: 50%;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chevron1 {
+  position: relative;
+  color: #919191;
+  float: right;
+  display: block;
 }
