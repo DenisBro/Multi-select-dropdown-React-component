@@ -19,15 +19,23 @@
   cursor: pointer;
 }
 
-input[type="checkbox"] {
+.sel_blocks_wrap {
+  float: left;
+}
+
+.sel_blocks .panel-body{
+  padding: 5px 5px 5px 5px;
+}
+
+.unitlist input[type="checkbox"] {
   display: none;
 }
 
-label {
+.unitlist label {
   cursor: pointer;
 }
 
-input[type="checkbox"] + label:before {
+.unitlist input[type="checkbox"] + label:before {
   border: 1px solid #dbdbdb;
   border-radius: 2px;
   content: "\00a0";
@@ -41,7 +49,7 @@ input[type="checkbox"] + label:before {
   width: 16px;
 }
 
-input[type="checkbox"]:checked + label:before {
+.unitlist input[type="checkbox"]:checked + label:before {
   background: #00aae1;
   border: 1px solid #00aae1;
   border-radius: 2px;
@@ -50,7 +58,7 @@ input[type="checkbox"]:checked + label:before {
   text-align: center;
 }
 
-input[type="checkbox"]:checked + label:after {
+.unitlist input[type="checkbox"]:checked + label:after {
   font-weight: bold;
 }
 
@@ -59,22 +67,20 @@ input[type="checkbox"]:checked + label:after {
   margin: 0;
 }
 
-.list-group-item:first-child{
+.unitlist:first-child{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.list-group-item:last-child {
+.unitlist:last-child {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-ul {
-  margin-top: -1px;
-}
 
-.list-group-item {
+.unitlist {
   cursor: pointer;
+  margin-top: -1px;
 }
 
 button,
@@ -84,19 +90,20 @@ button:focus {
 }
 
 
-button.list-group-item:hover,
-button.list-group-item:active{
+button.unitlist:hover,
+button.unitlist:active{
  background-color: #f2fafd;
 }
 
-.panel {
+.sel_blocks {
   background-color: #fff;
   margin-bottom: 0;
   border-radius: 0;
 }
 
 .column {
-  min-width: 50%;
+  width: 476px;
+  min-width: 476px;
   max-width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -107,4 +114,6 @@ button.list-group-item:active{
   color: #919191;
   float: right;
   display: block;
+  cursor: pointer;
+  padding: 9px 10px 9px 10px;
 }

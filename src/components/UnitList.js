@@ -5,10 +5,8 @@ import { ListGroupItem } from 'react-bootstrap';
 
     constructor(props) {
       super(props);
-      this.state = {
-        isChecked: false,
-      }
 
+      // bind `this` to the methods
       this.handleClick = this.handleClick.bind(this);
    }
 
@@ -23,41 +21,40 @@ import { ListGroupItem } from 'react-bootstrap';
       id: this.props.product.id,
       name: this.props.product.name
     });
-
-    // set the new state make checkbox checked
-    this.setState({isChecked: !this.state.isChecked});
-
-    // change the background-color of button
-    !this.state.isChecked ? e.target.style.background = '#f2fafd' : e.target.style.background = '#fff';
-
   }
 
   render() {
+
+    const{ id, name, elemColor} = this.props.product;
+
+    // retrieve all elements `id`
     let elemsID = [];
       if (this.props.selectedBlocks) {
-      this.props.selectedBlocks.forEach(unit => {
-        elemsID.push(unit.id);
+        this.props.selectedBlocks.forEach( unit => {
+          elemsID.push(Number(unit.id));
+        });
+      }
+
+    // check if the element is selected for setting the `checked` attribute
+    let pick = false;
+    if (elemsID.length !== 0) {
+      elemsID.forEach( elem => {
+        if (elem === Number(id) || elemsID.indexOf(elem) === -1) {
+            pick = true;
+          }
       });
     }
 
-    const productID = this.props.product.id;
-    let pickUp = false;
-    let elemID;
-    if (elemsID.length !== 0){
-      elemsID.forEach(elem => {
-        if (elem === Number(productID))
-        pickUp = true;
-      });
-    }
-
-    console.log(pickUp)
     return(
-        <ListGroupItem onClick={this.handleClick}>
+        <ListGroupItem onClick={this.handleClick}
+                        style={{background: elemColor}}
+                        className="unitlist" >
           <input type="checkbox"
-                 checked={pickUp}
-                 id={`c${productID}`} />
-          <label htmlFor={`c${productID}`}></label>
-          { this.props.product.name }
+                 checked={pick}
+                 id={`c${id}`}
+                readOnly />
+          <label htmlFor={`c${id}`}></label>
+          { name }
       </ListGroupItem>
 
     );

@@ -13,21 +13,16 @@ class App extends Component {
     super(props);
     this.state = {
       trigger: false
-
     }
 
+    // bind `this` to the methods
     this.selectElement = this.selectElement.bind(this);
     this.removeElement = this.removeElement.bind(this);
-    this.changeState   = this.changeState.bind(this);
+    this.showList = this.showList.bind(this);
   }
 
-  changeState(data) {
-    this.setState(data);
-  }
 
   removeElement(data) {
-    console.log(data)
-    this.setState({elemID: data});
     this.props.dispatch({type: 'DELETE', elemID: data});
   }
 
@@ -39,17 +34,22 @@ class App extends Component {
     this.props.dispatch({type: 'SELECT', item: {id: data.id, name: data.name}});
   }
 
+  showList() {
+    this.setState({trigger: !this.state.trigger});
+  }
+
   render() {
-    // console.log(this.props);
     return (
       <Grid>
         <Row>
           <Col className="column">
-            <Panel>
+            <Panel className="sel_blocks">
               <SelectedBlocks blockParams={this.props.selectedBlocks}
                               removeElement={this.removeElement}/>
 
-              <Glyphicon className="chevron1" glyph="menu-up"/>
+              <Glyphicon className="chevron1"
+                         glyph="menu-up"
+                         onClick={this.showList}/>
             </Panel>
 
           </Col>
@@ -58,12 +58,14 @@ class App extends Component {
           <Col className="column">
             <ListGroup fill>
               {this.props.products.map((product) => {
+                if (this.state.trigger) {
                   return ( <UnitList key={product.id}
                                      product={product}
                                      selectElement={this.selectElement}
                                      isChecked={this.state.isChecked}
                                      selectedBlocks={this.props.selectedBlocks}/>
                           );
+                } else return null;
               })
             }
             </ListGroup>

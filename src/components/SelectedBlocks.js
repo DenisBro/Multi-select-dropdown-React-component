@@ -19,7 +19,7 @@ class SelectedBlocks extends React.Component {
       }
 
     return(
-      <div>
+      <div className="sel_blocks_wrap">
       { blockInfo }
       </div>
     );
