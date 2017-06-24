@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 
-import elements from './elements';
+import products from './products';
 
 
 
 export default combineReducers({
-  elements
+  products
 });

@@ -1,8 +1,29 @@
 import React from 'react';
 
-export default () => {
+class SelectedBlocks extends React.Component {
 
-  return(
-    <div></div>
-  );
+  render() {
+    let blockInfo;
+     if (this.props.blockParams) {
+      blockInfo = this.props.blockParams.map((block) => {
+       return ( <div className="selected_box" key={block.id}>
+                  <span>
+                    {block.text}
+                  </span>
+                  <i className="material-icons" onClick={() => this.props.removeElement(block.id)}>close</i>
+                </div>
+              );
+        })
+      }else {
+        blockInfo = 'Select the products';
+      }
+
+    return(
+      <div>
+      { blockInfo }
+      </div>
+    );
+  }
 }
+
+export default SelectedBlocks;

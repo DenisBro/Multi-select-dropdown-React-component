@@ -1,10 +1,22 @@
 
-.pan {
+.selected_box {
   display: inline-block;
   margin-left: 5px;
-  width: 50px;
-  height: 20px;
   background-color: #daf2fc;
+  color: #00aae1;
+}
+
+.selected_box span {
+  padding: 7px 10px 7px 11px;
+  float: left;
+}
+.selected_box i {
+  display: block;
+  font-size: 16px;
+  float: right;
+  padding-right: 9px;
+  padding-top: 10px;
+  cursor: pointer;
 }
 
 input[type="checkbox"] {

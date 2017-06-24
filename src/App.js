@@ -12,10 +12,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trigger: false,
+      trigger: false
 
     }
+
     this.selectElement = this.selectElement.bind(this);
+    this.removeElement = this.removeElement.bind(this);
+    this.changeState   = this.changeState.bind(this);
+  }
+
+  changeState(data) {
+    this.setState(data);
+  }
+
+  removeElement(data) {
+    console.log(data)
+    this.setState({elemID: data});
+    this.props.dispatch({type: 'DELETE', elemID: data});
   }
 
   /**
@@ -23,8 +36,7 @@ class App extends Component {
    * @param  {object} data
    */
   selectElement(data) {
-    console.log(data)
-    this.props.dispatch({type: 'SELECT', item: {id: data.id, name: data.text}});
+    this.props.dispatch({type: 'SELECT', item: {id: data.id, name: data.name}});
   }
 
   render() {
@@ -34,8 +46,10 @@ class App extends Component {
         <Row>
           <Col className="column">
             <Panel>
-              <SelectedBlocks />
-              <Glyphicon className="chevron1" glyph="chevron-up"/>
+              <SelectedBlocks blockParams={this.props.selectedBlocks}
+                              removeElement={this.removeElement}/>
+
+              <Glyphicon className="chevron1" glyph="menu-up"/>
             </Panel>
 
           </Col>
@@ -43,10 +57,12 @@ class App extends Component {
         <Row>
           <Col className="column">
             <ListGroup fill>
-              {this.props.unitText.map((unitText) => {
-                  return ( <UnitList key={unitText.id}
-                                     unitText={unitText}
-                                     selectElement={this.selectElement} />
+              {this.props.products.map((product) => {
+                  return ( <UnitList key={product.id}
+                                     product={product}
+                                     selectElement={this.selectElement}
+                                     isChecked={this.state.isChecked}
+                                     selectedBlocks={this.props.selectedBlocks}/>
                           );
               })
             }
@@ -61,6 +77,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    unitText: state.elements.unitText,
+    products: state.products.unitText,
+    selectedBlocks: state.products.selection,
   }),
 )(App);
