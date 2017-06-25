@@ -7,24 +7,34 @@
 }
 
 .selected_box span {
-  padding: 7px 10px 7px 11px;
+  padding: 7px 10px 5px 11px;
   float: left;
 }
 .selected_box i {
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   float: right;
-  padding-right: 9px;
-  padding-top: 10px;
+  padding-right: 8px;
+  padding-top: 8px;
   cursor: pointer;
 }
 
 .sel_blocks_wrap {
   float: left;
+  padding-top: 5px;
+  padding-right: 35px;
+}
+
+.sel_blocks_wrap .select_title{
+  display: block;
+  padding: 7px 5px 10px 14px;
+  color: #ccc;
+  font-weight: bold;
 }
 
 .sel_blocks .panel-body{
-  padding: 5px 5px 5px 5px;
+  position: relative;
+  padding: 0 0 0 0;
 }
 
 .unitlist input[type="checkbox"] {
@@ -33,6 +43,14 @@
 
 .unitlist label {
   cursor: pointer;
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+
+.unitlist span {
+  padding-left: 12px;
+  position: relative;
+  top: -1px;
 }
 
 .unitlist input[type="checkbox"] + label:before {
@@ -54,8 +72,12 @@
   border: 1px solid #00aae1;
   border-radius: 2px;
   color: #fff;
-  content: "\2713";
+  font-family: FontAwesome;
+  content: "\f00c";
   text-align: center;
+  font-size: 11px;
+  font-weight: 100;
+  padding-top: 2px;
 }
 
 .unitlist input[type="checkbox"]:checked + label:after {
@@ -77,10 +99,15 @@
   border-bottom-right-radius: 0;
 }
 
+.unitlist_group {
+  margin-top: -1px;
+  position: relative;
+}
 
 .unitlist {
   cursor: pointer;
-  margin-top: -1px;
+  padding: 8px 15px;
+  height: 44px;
 }
 
 button,
@@ -102,18 +129,31 @@ button.unitlist:active{
 }
 
 .column {
-  width: 476px;
-  min-width: 476px;
-  max-width: 70%;
-  margin-left: auto;
-  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .chevron1 {
-  position: relative;
+  position: absolute;
   color: #919191;
   float: right;
   display: block;
   cursor: pointer;
-  padding: 9px 10px 9px 10px;
+  padding: 9px 10px 9px 15px;
+  right: 0;
+  top: 12%;
+}
+
+.main_wrap {
+  display: inline-table;
+  height: 100vh;
+}
+
+.cell_wrap {
+  display: table-cell;
+  min-width: 476px;
+  vertical-align: middle;
+}
+.container {
+  text-align: center;
 }

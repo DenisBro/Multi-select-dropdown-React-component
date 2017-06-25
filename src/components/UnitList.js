@@ -25,7 +25,7 @@ import { ListGroupItem } from 'react-bootstrap';
 
   render() {
 
-    const{ id, name, elemColor} = this.props.product;
+    const{ id, name, elemColor, bordColor, zIndex} = this.props.product;
 
     // retrieve all elements `id`
     let elemsID = [];
@@ -47,14 +47,17 @@ import { ListGroupItem } from 'react-bootstrap';
 
     return(
         <ListGroupItem onClick={this.handleClick}
-                        style={{background: elemColor}}
+                        style={{background: elemColor,
+                                borderColor: bordColor,
+                                zIndex: zIndex
+                              }}
                         className="unitlist" >
           <input type="checkbox"
                  checked={pick}
                  id={`c${id}`}
                 readOnly />
           <label htmlFor={`c${id}`}></label>
-          { name }
+          <span>{ name }</span>
       </ListGroupItem>
 
     );

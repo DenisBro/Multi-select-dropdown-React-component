@@ -39,39 +39,50 @@ class App extends Component {
   }
 
   render() {
+    const visibileState = this.state.trigger ? "visible" : "hidden";
+    const unvisibileState = !this.state.trigger ? "visible" : "hidden";
     return (
       <Grid>
-        <Row>
-          <Col className="column">
-            <Panel className="sel_blocks">
-              <SelectedBlocks blockParams={this.props.selectedBlocks}
-                              removeElement={this.removeElement}/>
+        <div className="main_wrap" >
+          <div className="cell_wrap" >
+          <Row>
+            <Col className="column" tabIndex>
+              <Panel className="sel_blocks">
+                <SelectedBlocks blockParams={this.props.selectedBlocks}
+                                removeElement={this.removeElement}/>
 
-              <Glyphicon className="chevron1"
-                         glyph="menu-up"
-                         onClick={this.showList}/>
-            </Panel>
+                <Glyphicon className="chevron1"
+                           glyph="menu-down"
+                           onClick={this.showList}
+                           style={{visibility: unvisibileState}} />
+               <Glyphicon className="chevron1"
+                          glyph="menu-up"
+                          onClick={this.showList}
+                          style={{visibility: visibileState}} />
 
-          </Col>
-        </Row>
-        <Row>
-          <Col className="column">
-            <ListGroup fill>
-              {this.props.products.map((product) => {
-                if (this.state.trigger) {
-                  return ( <UnitList key={product.id}
-                                     product={product}
-                                     selectElement={this.selectElement}
-                                     isChecked={this.state.isChecked}
-                                     selectedBlocks={this.props.selectedBlocks}/>
-                          );
-                } else return null;
-              })
-            }
-            </ListGroup>
-          </Col>
-        </Row>
+              </Panel>
 
+            </Col>
+          </Row>
+          <Row>
+            <Col className="column">
+              <ListGroup fill className="unitlist_group">
+                {this.props.products.map((product) => {
+                  if (this.state.trigger) {
+                    return ( <UnitList key={product.id}
+                                       product={product}
+                                       selectElement={this.selectElement}
+                                       isChecked={this.state.isChecked}
+                                       selectedBlocks={this.props.selectedBlocks}/>
+                            );
+                  } else return null;
+                })
+              }
+              </ListGroup>
+            </Col>
+          </Row>
+        </div>
+        </div>
       </Grid>
     );
   }

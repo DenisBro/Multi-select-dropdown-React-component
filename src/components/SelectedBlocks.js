@@ -4,7 +4,7 @@ class SelectedBlocks extends React.Component {
 
   render() {
     let blockInfo;
-     if (this.props.blockParams) {
+     if (this.props.blockParams && this.props.blockParams.length !== 0) {
       blockInfo = this.props.blockParams.map((block) => {
        return ( <div className="selected_box" key={block.id}>
                   <span>
@@ -14,8 +14,8 @@ class SelectedBlocks extends React.Component {
                 </div>
               );
         })
-      }else {
-        blockInfo = 'Select the products';
+      }else if (!this.props.blockParams || this.props.blockParams.length === 0) {
+        blockInfo = <span className="select_title">Select the products</span>;
       }
 
     return(
