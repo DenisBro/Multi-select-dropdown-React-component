@@ -10,12 +10,13 @@ import { ListGroupItem } from 'react-bootstrap';
       this.handleClick = this.handleClick.bind(this);
    }
 
+
   /**
    * Handle the event
    * @param  {object} e
    */
   handleClick(e) {
-
+    e.stopPropagation();
     // send data for dispatching
     this.props.selectElement({
       id: this.props.product.id,
@@ -46,18 +47,20 @@ import { ListGroupItem } from 'react-bootstrap';
     }
 
     return(
-        <ListGroupItem onClick={this.handleClick}
+        <ListGroupItem
                         style={{background: elemColor,
                                 borderColor: bordColor,
                                 zIndex: zIndex
                               }}
                         className="unitlist" >
+        <div onClick={this.handleClick}>
           <input type="checkbox"
                  checked={pick}
                  id={`c${id}`}
                 readOnly />
           <label htmlFor={`c${id}`}></label>
           <span>{ name }</span>
+        </div>
       </ListGroupItem>
 
     );

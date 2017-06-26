@@ -29,7 +29,6 @@
   display: block;
   padding: 7px 5px 10px 14px;
   color: #ccc;
-  font-weight: bold;
 }
 
 .sel_blocks .panel-body{
@@ -102,6 +101,7 @@
 .unitlist_group {
   margin-top: -1px;
   position: relative;
+  text-align: left;
 }
 
 .unitlist {
@@ -119,7 +119,7 @@ button:focus {
 
 button.unitlist:hover,
 button.unitlist:active{
- background-color: #f2fafd;
+ background: #f2fafd;
 }
 
 .sel_blocks {
@@ -151,6 +151,7 @@ button.unitlist:active{
 
 .cell_wrap {
   display: table-cell;
+  max-width: 700px;
   min-width: 476px;
   vertical-align: middle;
 }

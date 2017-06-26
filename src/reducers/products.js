@@ -7,13 +7,14 @@ const initialState = {
               {id: 5, name:  'IT'},
               {id: 6, name:  'Managementteam'},
               {id: 7, name:  'Planning'},
-              {id: 8, name:  'Sales'}
+              {id: 8, name:  'Sales'},
 
             ],
+  elSelected: [],
+
 };
 
 initialState.unitText.forEach( unit => {
-  unit.elemColor = '#fff';
   unit.bordColor = '#ddd';
   unit.zIndex    = 1;
 })
@@ -25,25 +26,24 @@ export default function( state = initialState, action ) {
     case 'SELECT' :
       let existElem = "";
       new_state = JSON.parse(JSON.stringify(state));
-      new_state.selection = new_state.selection ? new_state.selection : [];
 
       // check if the selected unit was not selected before
-      if (new_state.selection.length !== 0) {
-         new_state.selection.forEach((unit, index) => {
+      if (new_state.elSelected.length !== 0) {
+         new_state.elSelected.forEach((unit, index) => {
           if (Number(unit.id) === action.item.id) {
             existElem =  index;
           }
         });
         if (existElem !== "") {
-          new_state.selection.splice(Number(existElem), 1);
+          new_state.elSelected.splice(Number(existElem), 1);
         }else {
-          new_state.selection.push({
+          new_state.elSelected.push({
              id: action.item.id,
              text: action.item.name,
            });
         }
       }else {
-          new_state.selection.push({
+          new_state.elSelected.push({
              id: action.item.id,
              text: action.item.name,
            });
@@ -69,26 +69,97 @@ export default function( state = initialState, action ) {
           }
         }
       });
-
-
-
     return new_state;
 
     case 'DELETE' :
-    new_state = JSON.parse(JSON.stringify(state));
-    new_state.selection.forEach((unit, index) => {
-      if (Number(unit.id) === action.elemID)
-        new_state.selection.splice(index, 1);
-    });
+      new_state = JSON.parse(JSON.stringify(state));
 
-    // set the `background-color` for selected element
-    new_state.unitText.forEach( unit => {
-      if (unit.id === action.elemID) {
-        unit.elemColor = '#fff';
-        unit.bordColor = '#ddd';
-        unit.zIndex    = 1;
+      // delete the chosen element
+      new_state.elSelected.forEach((unit, index) => {
+        if (Number(unit.id) === action.elemID)
+          new_state.elSelected.splice(index, 1);
+      });
+
+      // set the `background-color` for selected element
+      new_state.unitText.forEach( unit => {
+        if (unit.id === action.elemID) {
+          unit.elemColor = '#fff';
+          unit.bordColor = '#ddd';
+          unit.zIndex    = 1;
+        }
+      });
+    return new_state;
+
+    case 'KEY_ADD_COLOR' :
+      new_state = JSON.parse(JSON.stringify(state));
+
+      // get the existing selected elements
+      let elemSelected = [];
+      if (new_state.elSelected && new_state.elSelected.length !== 0) {
+        new_state.elSelected.forEach( prod => {
+          elemSelected.push(prod.id);
+        });
       }
-    });
+
+      // set the `background-color` for selected element
+      new_state.unitText.forEach( unit => {
+        if(unit.id === action.elem) {
+          unit.elemColor = '#f2fafd';
+          unit.bordColor = '#00aae1';
+          unit.zIndex = 3;
+          unit.trace = true;
+        }
+        if (unit.id !== action.elem) {
+          unit.elemColor = '#fff';
+          unit.bordColor = '#ddd';
+          unit.trace = false;
+          unit.zIndex = 1;
+        }
+        if (elemSelected.indexOf(unit.id) !== -1) {
+          unit.elemColor = '#f2fafd';
+          unit.bordColor = '#c0dee9';
+        }
+        if (unit.trace) {
+          unit.bordColor = '#00aae1';
+        }
+      });
+    return new_state;
+
+    case 'KEY_ADD_CHECKED' :
+      new_state = JSON.parse(JSON.stringify(state));
+
+      // get the existing selected elements
+      let selElem = [];
+      if (new_state.elSelected.length !== 0) {
+        new_state.elSelected.forEach( prod => {
+          selElem.push(prod.id);
+        });
+      }
+
+      // set the selected element
+      new_state.unitText.forEach( unit => {
+        if (unit.trace && selElem.indexOf(unit.id) !== -1) {
+          new_state.elSelected.forEach((prod, index) => {
+            if (unit.id === prod.id)
+              new_state.elSelected.splice(index, 1);
+              unit.bordColor = '#ddd';
+              unit.elemColor = '#fff';
+              unit.zIndex    = 1;
+              unit.trace = false;
+          });
+        }
+        if (unit.trace && selElem.indexOf(unit.id) === -1) {
+          if (!new_state.elSelected) {
+            new_state.elSelected = []
+          }
+          unit.bordColor = '#c0dee9';
+          unit.zIndex    = 2;
+          new_state.elSelected.push({
+            id: unit.id,
+            text: unit.name,
+          });
+        }
+      });
 
     return new_state;
 
