@@ -47,13 +47,12 @@ import { ListGroupItem } from 'react-bootstrap';
     }
 
     return(
-        <ListGroupItem
-                        style={{background: elemColor,
+        <ListGroupItem style={{background: elemColor,
                                 borderColor: bordColor,
                                 zIndex: zIndex
                               }}
                         className="unitlist" >
-        <div onClick={this.handleClick}>
+        <div onClick={this.handleClick} className="unitlist_link">
           <input type="checkbox"
                  checked={pick}
                  id={`c${id}`}

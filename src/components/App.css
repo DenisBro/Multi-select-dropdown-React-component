@@ -105,21 +105,22 @@
 }
 
 .unitlist {
+  padding: 0 0;
+  height: 44px;
+  transition: all 0.2s linear;
+}
+
+.unitlist_link {
   cursor: pointer;
   padding: 8px 15px;
-  height: 44px;
 }
 
-button,
-button:active,
-button:focus {
-    outline: none;
-}
-
-
-button.unitlist:hover,
-button.unitlist:active{
+.unitlist:hover {
  background: #f2fafd;
+}
+
+.unitlist:active {
+  background: #d8f0f9;
 }
 
 .sel_blocks {
