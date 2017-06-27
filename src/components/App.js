@@ -55,7 +55,7 @@ class App extends Component {
    * @param  {object} e [the event object]
    */
   onKeypresshandler(e) {
-    e.stopPropagation();
+    e.preventDefault();
 
     // check if the products list is showen
     if (this.state.trigger) {

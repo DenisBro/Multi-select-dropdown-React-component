@@ -16,12 +16,12 @@ import { ListGroupItem } from 'react-bootstrap';
    * @param  {object} e
    */
   handleClick(e) {
-    e.stopPropagation();
-    // send data for dispatching
-    this.props.selectElement({
-      id: this.props.product.id,
-      name: this.props.product.name
-    });
+    e.preventDefault();
+    // send data for dispatchin
+      this.props.selectElement({
+        id: this.props.product.id,
+        name: this.props.product.name
+      });
   }
 
   render() {
