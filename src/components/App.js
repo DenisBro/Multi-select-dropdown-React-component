@@ -55,7 +55,7 @@ class App extends Component {
    * @param  {object} e [the event object]
    */
   onKeypresshandler(e) {
-    e.preventDefault();
+    e.stopPropagation();
     // check if the products list is showen
     if (this.state.trigger) {
 
@@ -100,7 +100,7 @@ class App extends Component {
 }
 
   render() {
-    window.addEventListener("keydown", this.onKeypresshandler, false);
+    document.addEventListener("keydown", this.onKeypresshandler, false);
     const visibileState = this.state.trigger ? "visible" : "hidden";
     const unvisibileState = !this.state.trigger ? "visible" : "hidden";
     return (
@@ -108,7 +108,7 @@ class App extends Component {
         <div className="main_wrap" >
           <div className="cell_wrap" >
           <Row>
-            <Col className="column" tabIndex>
+            <Col className="column">
               <Panel className="sel_blocks">
                 <SelectedBlocks selectedBlocks={this.props.selectedBlocks}
                                 removeElement={this.removeElement}/>
