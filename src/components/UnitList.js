@@ -52,7 +52,7 @@ import { ListGroupItem } from 'react-bootstrap';
                                 zIndex: zIndex
                               }}
                         className="unitlist" >
-        <div onClick={this.handleClick} className="unitlist_link">
+        <div  className="unitlist_link" onClick={this.handleClick}>
           <input type="checkbox"
                  checked={pick}
                  id={`c${id}`}

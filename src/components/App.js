@@ -56,7 +56,6 @@ class App extends Component {
    */
   onKeypresshandler(e) {
     e.preventDefault();
-
     // check if the products list is showen
     if (this.state.trigger) {
 
