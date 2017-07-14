@@ -8,7 +8,7 @@ class SelectedBlocks extends React.Component {
       blockInfo = this.props.selectedBlocks.map((block) => {
        return ( <div className="selected_box" key={block.id}>
                   <span>
-                    {block.text}
+                    {block.name}
                   </span>
                   <i className="material-icons" onClick={() => this.props.removeElement(block.id)}>close</i>
                 </div>

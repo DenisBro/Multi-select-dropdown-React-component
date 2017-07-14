@@ -6,6 +6,12 @@
   color: #00aae1;
 }
 
+.activeEl {
+  border-color: rgb(0, 170, 225) !important;
+  z-index: 3 !important;
+  background: rgb(242, 250, 253);
+}
+
 .selected_box span {
   padding: 7px 10px 5px 11px;
   float: left;
@@ -34,6 +40,11 @@
 .sel_blocks .panel-body{
   position: relative;
   padding: 0 0 0 0;
+}
+
+.sel_blocks .panel-body:focus,
+.panel:focus {
+  outline: 0px solid transparent;
 }
 
 .unitlist input[type="checkbox"] {

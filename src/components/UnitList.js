@@ -22,11 +22,13 @@ import { ListGroupItem } from 'react-bootstrap';
         id: this.props.product.id,
         name: this.props.product.name
       });
+    e.currentTarget.nextElementSibling.focus();
+    this.props.changeState(0);
   }
 
   render() {
-
-    const{ id, name, elemColor, bordColor, zIndex} = this.props.product;
+    const { id, name } = this.props.product;
+    const focusID = this.props.active;
 
     // retrieve all elements `id`
     let elemsID = [];
@@ -36,7 +38,7 @@ import { ListGroupItem } from 'react-bootstrap';
         });
       }
 
-    // check if the element is selected for setting the `checked` attribute
+    // check if the element is selected, for setting the `checked` attribute
     let pick = false;
     if (elemsID.length !== 0) {
       elemsID.forEach( elem => {
@@ -46,12 +48,14 @@ import { ListGroupItem } from 'react-bootstrap';
       });
     }
 
+    let bgColor = {};
+    if (pick)  bgColor = {backgroundColor: '#f2fafd',
+                          borderColor: '#c0dee9',
+                          zIndex: 2};
+
     return(
-        <ListGroupItem style={{background: elemColor,
-                                borderColor: bordColor,
-                                zIndex: zIndex
-                              }}
-                        className="unitlist" >
+        <ListGroupItem  style={bgColor}
+                        className={"unitlist "+( focusID === id ? 'activeEl' : 'noactive')} >
         <div  className="unitlist_link" onClick={this.handleClick}>
           <input type="checkbox"
                  checked={pick}
@@ -60,6 +64,7 @@ import { ListGroupItem } from 'react-bootstrap';
           <label htmlFor={`c${id}`}></label>
           <span>{ name }</span>
         </div>
+        <div tabIndex='0' onKeyDown={this.props.keyHandle}></div>
       </ListGroupItem>
 
     );
